@@ -58,7 +58,7 @@
   .prices .mk{font-weight:500}
   .prices .fr{font-weight:500;color:var(--accent)}
   .prices .na{color:var(--faint);font-size:11px}
-  .gap{font-family:var(--mono);font-size:12.5px;font-weight:700;text-align:center;padding:5px 7px;border-radius:6px;background:var(--panel);color:var(--muted);border:1px solid var(--line);white-space:nowrap;min-width:84px}
+  .gap{font-family:var(--mono);font-size:12px;font-weight:700;text-align:center;padding:5px 6px;border-radius:6px;background:var(--panel);color:var(--muted);border:1px solid var(--line);white-space:nowrap;min-width:60px}
   .gap.buy{background:var(--green-bg);color:var(--green);border-color:rgba(93,202,165,.3)}
   .gap.over{color:var(--amber)}
   .gap small{display:block;font-size:8.5px;font-weight:400;color:var(--faint)}
@@ -135,6 +135,14 @@ function st(t){ if(!store[t]) store[t] = {}; return store[t]; }
 async function getJSON(p){ const r = await fetch(p + "?t=" + Date.now()); if(!r.ok) throw new Error(p+" "+r.status); return r.json(); }
 function num(v){ const n = parseFloat(v); return isNaN(n) ? NaN : n; }
 
+function gapBadge(cur, target, label){
+  if(isNaN(target) || target <= 0) return '<div class="gap">—<small>'+label+'</small></div>';
+  if(cur == null) return '<div class="gap">n/a<small>'+label+'</small></div>';
+  const diff = (cur - target)/target*100;
+  const cls = cur <= target ? 'gap buy' : 'gap over';
+  return '<div class="'+cls+'">'+(diff>0?'+':'')+diff.toFixed(1)+'%<small>'+label+'</small></div>';
+}
+
 function earningsBadge(dateStr){
   if(!dateStr) return "";
   const d = new Date(dateStr + "T00:00:00"); if(isNaN(d)) return "";
@@ -175,12 +183,9 @@ function render(){
       const fair = (pe > 0 && eps > 0) ? pe * eps : NaN;
       const eff = (!isNaN(manual) && manual > 0) ? manual : fair;
 
-      // 거리 배지: 현재가 vs 목표(=내 적정가 또는 직접목표)
-      let gapHtml = '—<small>목표 미설정</small>', gapCls = "gap";
-      if(!isNaN(eff) && cur != null){ const diff = (cur - eff)/eff*100;
-        if(cur <= eff){ gapCls = "gap buy"; gapHtml = diff.toFixed(1)+'%<small>매수권</small>'; }
-        else { gapCls = "gap over"; gapHtml = '+'+diff.toFixed(1)+'%<small>목표 위</small>'; }
-      } else if(!isNaN(eff) && cur == null){ gapHtml = '—<small>가격 n/a</small>'; }
+      // 두 배지: 시장가 vs 적정가(PER×EPS), 시장가 vs 내 목표가(직접)
+      const gapFair = gapBadge(cur, fair, '적정');
+      const gapTgt  = gapBadge(cur, manual, '목표');
 
       // 가격 블록: 시장가(현재가) + 내 적정가 둘 다
       const mktStr = (cur != null) ? cur.toLocaleString(undefined,{maximumFractionDigits:2}) : (r.fetch===false?'수동':'n/a');
@@ -192,7 +197,7 @@ function render(){
       const eb = earningsBadge(s.edate);
 
       html += '<div class="row"><div class="rtop"><div class="nm"><a class="tk" href="https://finance.yahoo.com/quote/'+encodeURIComponent(r.t)+'" target="_blank" rel="noopener">'+r.t+'<span class="e">↗</span></a>'+eb+'<div class="co">'+r.name+'</div><div class="strg">'+r.s+'</div></div>'+
-        '<div class="rright">'+pricesHtml+'<div class="'+gapCls+'">'+gapHtml+'</div><div class="spark">'+sparkline(pd.history, isNaN(eff)?null:eff)+'</div></div></div>'+
+        '<div class="rright">'+pricesHtml+gapFair+gapTgt+'<div class="spark">'+sparkline(pd.history, isNaN(eff)?null:eff)+'</div></div></div>'+
         '<div class="rbot"><div class="vg"><label>적정PER</label><input class="num" type="number" step="any" placeholder="입력" data-t="'+r.t+'" data-f="pe" value="'+peDisp+'"></div>'+
           '<span class="op">×</span><div class="vg"><label>예상EPS</label><input class="num" type="number" step="any" placeholder="입력" data-t="'+r.t+'" data-f="eps" value="'+(s.eps??"")+'"></div>'+
           '<div class="vg"><label>목표가 직접</label><input class="tgt" type="number" step="any" placeholder="—" data-t="'+r.t+'" data-f="tgt" value="'+(s.tgt??"")+'"></div>'+
