@@ -1,85 +1,97 @@
 {
   "historyCap": 720,
+  "peNote": "PER은 업종 평균 기준 추정치이며 회사별 검증이 필요합니다. EPS(주당순이익)는 변하므로 직접 최신값을 넣으세요. 적정가 = 적정PER × 예상EPS.",
   "themes": [
     {
       "title": "① AI 에이전트 인프라",
       "metric": "하이퍼스케일러 capex · HBM 공급 · 파운드리 가동률",
       "rows": [
-        { "t": "NVDA",  "name": "NVIDIA",       "s": "가속연산 표준 + CUDA 해자", "fetch": true },
-        { "t": "TSM",   "name": "TSMC",         "s": "모든 AI칩 위탁생산 곱셈효과", "fetch": true },
-        { "t": "AVGO",  "name": "Broadcom",     "s": "맞춤형 AI칩·네트워킹", "fetch": true },
-        { "t": "MU",    "name": "Micron",       "s": "HBM 메모리 병목", "fetch": true },
-        { "t": "MSFT",  "name": "Microsoft",    "s": "OpenAI 프록시·클라우드", "fetch": true },
-        { "t": "GOOGL", "name": "Alphabet",     "s": "Anthropic 지분·모델·자체칩", "fetch": true }
+        { "t": "NVDA",  "name": "NVIDIA",    "s": "가속연산 표준 + CUDA 해자", "fetch": true, "pe": 32 },
+        { "t": "TSM",   "name": "TSMC",      "s": "모든 AI칩 위탁생산 곱셈효과", "fetch": true, "pe": 24 },
+        { "t": "AVGO",  "name": "Broadcom",  "s": "맞춤형 AI칩·네트워킹", "fetch": true, "pe": 30 },
+        { "t": "MU",    "name": "Micron",    "s": "HBM 메모리 병목 (시클리컬)", "fetch": true, "pe": 15 },
+        { "t": "MSFT",  "name": "Microsoft", "s": "OpenAI 프록시·클라우드", "fetch": true, "pe": 30 },
+        { "t": "GOOGL", "name": "Alphabet",  "s": "Anthropic 지분·모델·자체칩", "fetch": true, "pe": 24 },
+        { "t": "OpenAI",    "name": "OpenAI",    "s": "ChatGPT·최대 소비자 도달", "private": true, "fetch": false, "proxy": "Microsoft" },
+        { "t": "Anthropic", "name": "Anthropic", "s": "Claude·코딩·엔터프라이즈", "private": true, "fetch": false, "proxy": "Amazon·Alphabet" }
       ]
     },
     {
       "title": "② 로봇 / 피지컬 AI",
       "metric": "부품 단가 하락 · 출하 대수 · 상용 배치",
       "rows": [
-        { "t": "NVDA",   "name": "NVIDIA",         "s": "Isaac GR00T·Jetson Thor 로봇 두뇌", "fetch": true },
-        { "t": "MP",     "name": "MP Materials",   "s": "모터용 희토류 자석 소재", "fetch": true },
-        { "t": "TSLA",   "name": "Tesla",          "s": "Optimus (완제품·고변동)", "fetch": true },
-        { "t": "6324.T", "name": "Harmonic Drive", "s": "관절 감속기 과점 (도쿄·수동)", "fetch": false },
-        { "t": "6268.T", "name": "Nabtesco",       "s": "고하중 RV 감속기 (도쿄·수동)", "fetch": false },
-        { "t": "6594.T", "name": "Nidec",          "s": "정밀 모터 (도쿄·수동)", "fetch": false }
+        { "t": "NVDA",   "name": "NVIDIA",         "s": "Isaac GR00T·Jetson Thor 로봇 두뇌", "fetch": true, "pe": 32 },
+        { "t": "MP",     "name": "MP Materials",   "s": "모터용 희토류 자석 (시클리컬)", "fetch": true, "pe": null },
+        { "t": "TSLA",   "name": "Tesla",          "s": "Optimus (완제품·고변동)", "fetch": true, "pe": 50 },
+        { "t": "6324.T", "name": "Harmonic Drive", "s": "관절 감속기 과점 (도쿄·수동)", "fetch": false, "pe": null },
+        { "t": "6268.T", "name": "Nabtesco",       "s": "고하중 RV 감속기 (도쿄·수동)", "fetch": false, "pe": null },
+        { "t": "6594.T", "name": "Nidec",          "s": "정밀 모터 (도쿄·수동)", "fetch": false, "pe": null },
+        { "t": "Figure",    "name": "Figure AI",  "s": "휴머노이드 완제품 선두", "private": true, "fetch": false, "proxy": "Microsoft·NVIDIA 투자" },
+        { "t": "Apptronik", "name": "Apptronik",  "s": "Apollo 산업용 휴머노이드", "private": true, "fetch": false, "proxy": "Google·Mercedes 투자" }
       ]
     },
     {
       "title": "③ 프로그래밍 가능한 생물학",
       "metric": "임상 판독 · 도구/시약 매출",
       "rows": [
-        { "t": "TMO",     "name": "Thermo Fisher", "s": "실험실 표준 + 위탁생산", "fetch": true },
-        { "t": "DHR",     "name": "Danaher",       "s": "Cytiva 바이오공정 소모품", "fetch": true },
-        { "t": "ILMN",    "name": "Illumina",      "s": "유전체 시퀀싱 표준", "fetch": true },
-        { "t": "TXG",     "name": "10x Genomics",  "s": "단일세포·공간 분석 도구", "fetch": true },
-        { "t": "LONN.SW", "name": "Lonza",         "s": "세포·유전자 위탁생산 (스위스·수동)", "fetch": false }
+        { "t": "TMO",     "name": "Thermo Fisher", "s": "실험실 표준 + 위탁생산", "fetch": true, "pe": 24 },
+        { "t": "DHR",     "name": "Danaher",       "s": "Cytiva 바이오공정 소모품", "fetch": true, "pe": 26 },
+        { "t": "ILMN",    "name": "Illumina",      "s": "유전체 시퀀싱 표준", "fetch": true, "pe": 28 },
+        { "t": "TXG",     "name": "10x Genomics",  "s": "단일세포·공간 분석 (사전수익)", "fetch": true, "pe": null },
+        { "t": "LONN.SW", "name": "Lonza",         "s": "세포·유전자 위탁생산 (스위스·수동)", "fetch": false, "pe": null },
+        { "t": "Isomorphic", "name": "Isomorphic Labs", "s": "AI 신약설계 (딥마인드 계열)", "private": true, "fetch": false, "proxy": "Alphabet" }
       ]
     },
     {
       "title": "④ 에너지 풍요",
       "metric": "PPA 체결 · net energy · 백로그",
       "rows": [
-        { "t": "GEV",  "name": "GE Vernova",     "s": "발전설비·그리드 (터빈 부족=가격결정력)", "fetch": true },
-        { "t": "ETN",  "name": "Eaton",          "s": "송배전·변압기 (소스 불문 전달)", "fetch": true },
-        { "t": "PWR",  "name": "Quanta",         "s": "그리드 건설 인력·EPC", "fetch": true },
-        { "t": "VST",  "name": "Vistra",         "s": "발전 (전자 자체)", "fetch": true },
-        { "t": "CEG",  "name": "Constellation",  "s": "원전·머천트 발전", "fetch": true },
-        { "t": "FLNC", "name": "Fluence",        "s": "에너지 저장 (어떤 소스든 필요)", "fetch": true }
+        { "t": "GEV",  "name": "GE Vernova",    "s": "발전설비·그리드 (터빈 부족=가격결정력)", "fetch": true, "pe": 32 },
+        { "t": "ETN",  "name": "Eaton",         "s": "송배전·변압기 (소스 불문 전달)", "fetch": true, "pe": 28 },
+        { "t": "PWR",  "name": "Quanta",        "s": "그리드 건설 인력·EPC", "fetch": true, "pe": 30 },
+        { "t": "VST",  "name": "Vistra",        "s": "발전 (전자 자체)", "fetch": true, "pe": 18 },
+        { "t": "CEG",  "name": "Constellation", "s": "원전·머천트 발전", "fetch": true, "pe": 20 },
+        { "t": "FLNC", "name": "Fluence",       "s": "에너지 저장 (사전수익)", "fetch": true, "pe": null },
+        { "t": "CommonwealthFusion", "name": "Commonwealth Fusion", "s": "핵융합 선두 (SPARC→ARC)", "private": true, "fetch": false, "proxy": "NVIDIA·Google 투자" },
+        { "t": "Helion", "name": "Helion", "s": "핵융합·MS 50MW PPA(2028)", "private": true, "fetch": false, "proxy": "Microsoft·Sam Altman" }
       ]
     },
     {
       "title": "⑤ 우주 경제",
       "metric": "발사 $/kg · 궤도 출하 · 정부 수주",
       "rows": [
-        { "t": "RKLB", "name": "Rocket Lab",       "s": "순수 발사+위성 다변화", "fetch": true },
-        { "t": "PL",   "name": "Planet Labs",      "s": "최대 지구관측 함대·데이터 해자", "fetch": true },
-        { "t": "RDW",  "name": "Redwire",          "s": "우주 부품·궤도 제조", "fetch": true },
-        { "t": "LMT",  "name": "Lockheed",         "s": "방위·위성 (현금흐름 안정)", "fetch": true },
-        { "t": "NOC",  "name": "Northrop",         "s": "방위·우주 프라임", "fetch": true },
-        { "t": "ASTS", "name": "AST SpaceMobile",  "s": "위성-휴대폰 직결 (고옵션·고변동)", "fetch": true }
+        { "t": "RKLB", "name": "Rocket Lab",      "s": "순수 발사+위성 (사전수익)", "fetch": true, "pe": null },
+        { "t": "PL",   "name": "Planet Labs",     "s": "최대 지구관측 함대·데이터", "fetch": true, "pe": null },
+        { "t": "RDW",  "name": "Redwire",         "s": "우주 부품·궤도 제조", "fetch": true, "pe": null },
+        { "t": "LMT",  "name": "Lockheed",        "s": "방위·위성 (현금흐름 안정)", "fetch": true, "pe": 19 },
+        { "t": "NOC",  "name": "Northrop",        "s": "방위·우주 프라임", "fetch": true, "pe": 19 },
+        { "t": "ASTS", "name": "AST SpaceMobile", "s": "위성-휴대폰 직결 (사전수익)", "fetch": true, "pe": null },
+        { "t": "SpaceX", "name": "SpaceX", "s": "재사용 발사 압도적 지배", "private": true, "fetch": false, "proxy": "ARK Venture·향후 IPO" }
       ]
     },
     {
       "title": "⑥ 실리콘 포토닉스",
       "metric": "CPO 채택률 · 트랜시버 수주 · 2028 배치",
       "rows": [
-        { "t": "COHR", "name": "Coherent",      "s": "광부품 최대 순수주·레이저", "fetch": true },
-        { "t": "LITE", "name": "Lumentum",      "s": "데이터센터 광통신 핵심 공급", "fetch": true },
-        { "t": "MTSI", "name": "MACOM",         "s": "고속 아날로그·포토닉스 반도체", "fetch": true },
-        { "t": "AAOI", "name": "Applied Opto",  "s": "수직통합 트랜시버 (소형·고변동)", "fetch": true },
-        { "t": "MRVL", "name": "Marvell",       "s": "Celestial AI 인수·광 인터커넥트", "fetch": true }
+        { "t": "COHR", "name": "Coherent",     "s": "광부품 최대 순수주·레이저", "fetch": true, "pe": 28 },
+        { "t": "LITE", "name": "Lumentum",     "s": "데이터센터 광통신 핵심 공급", "fetch": true, "pe": 28 },
+        { "t": "MTSI", "name": "MACOM",        "s": "고속 아날로그·포토닉스 반도체", "fetch": true, "pe": 30 },
+        { "t": "AAOI", "name": "Applied Opto", "s": "수직통합 트랜시버 (고변동)", "fetch": true, "pe": null },
+        { "t": "MRVL", "name": "Marvell",      "s": "Celestial AI 인수·광 인터커넥트", "fetch": true, "pe": 30 },
+        { "t": "Lightmatter", "name": "Lightmatter", "s": "광 인터포저 파괴자", "private": true, "fetch": false, "proxy": "직접 프록시 약함" },
+        { "t": "AyarLabs", "name": "Ayar Labs", "s": "광 I/O 칩렛", "private": true, "fetch": false, "proxy": "직접 프록시 약함" }
       ]
     },
     {
       "title": "⑦ 양자컴퓨팅 (투기적)",
       "metric": "큐비트·오류정정 마일스톤 · 실사용 사례",
       "rows": [
-        { "t": "IONQ",  "name": "IonQ",     "s": "트랩이온 순수주 대표 (극변동)", "fetch": true },
-        { "t": "RGTI",  "name": "Rigetti",  "s": "초전도 순수주 (소형·고위험)", "fetch": true },
-        { "t": "QBTS",  "name": "D-Wave",   "s": "어닐링 순수주", "fetch": true },
-        { "t": "IBM",   "name": "IBM",      "s": "로드맵·실사용, 본업이 받쳐줌", "fetch": true },
-        { "t": "GOOGL", "name": "Alphabet", "s": "Willow 칩 (희석된 안전판)", "fetch": true }
+        { "t": "IONQ",  "name": "IonQ",     "s": "트랩이온 순수주 (극변동·사전수익)", "fetch": true, "pe": null },
+        { "t": "RGTI",  "name": "Rigetti",  "s": "초전도 순수주 (고위험·사전수익)", "fetch": true, "pe": null },
+        { "t": "QBTS",  "name": "D-Wave",   "s": "어닐링 순수주 (사전수익)", "fetch": true, "pe": null },
+        { "t": "IBM",   "name": "IBM",      "s": "로드맵·실사용, 본업이 받쳐줌", "fetch": true, "pe": 22 },
+        { "t": "GOOGL", "name": "Alphabet", "s": "Willow 칩 (희석된 안전판)", "fetch": true, "pe": 24 },
+        { "t": "PsiQuantum", "name": "PsiQuantum", "s": "광자식 대규모 양자", "private": true, "fetch": false, "proxy": "대형 파트너·비상장" }
       ]
     }
   ]
