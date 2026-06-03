@@ -93,6 +93,18 @@
         { "t": "GOOGL", "name": "Alphabet", "s": "Willow 칩 (희석된 안전판)", "fetch": true, "pe": 24 },
         { "t": "PsiQuantum", "name": "PsiQuantum", "s": "광자식 대규모 양자", "private": true, "fetch": false, "proxy": "대형 파트너·비상장" }
       ]
+    },
+    {
+      "title": "⑧ 방어 자산 (파도 꺾일 때 방패)",
+      "metric": "실질금리 · 달러 강세 · 시스템 불안 — 성장 곡괭이와 상관 낮음",
+      "rows": [
+        { "t": "GLD",  "name": "금 (SPDR Gold)",        "s": "통화훼손·실질금리 하락 헤지 (현금흐름 없음)", "fetch": true, "pe": null },
+        { "t": "IAU",  "name": "금 (iShares Gold)",     "s": "GLD 대비 저보수 금 ETF", "fetch": true, "pe": null },
+        { "t": "UUP",  "name": "달러 (Invesco DXY)",     "s": "달러 강세·위기 안전통화 (미국주식과 중복 주의)", "fetch": true, "pe": null },
+        { "t": "SHV",  "name": "초단기 국채 (iShares)",  "s": "현금 대용·폭락 때 살 실탄(옵션)", "fetch": true, "pe": null },
+        { "t": "TLT",  "name": "장기 국채 (20년+)",      "s": "경기침체·금리 인하 시 상승 (금리 민감)", "fetch": true, "pe": null },
+        { "t": "IEF",  "name": "중기 국채 (7-10년)",     "s": "변동 낮은 채권 노출", "fetch": true, "pe": null }
+      ]
     }
   ]
 }
