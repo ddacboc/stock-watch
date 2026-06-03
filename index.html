@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>곡괭이 워치 대시보드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e11;--panel:#15181d;--panel2:#1b1f25;--line:rgba(255,255,255,.08);
+    --line2:rgba(255,255,255,.14);--ink:#e9e6dd;--muted:#8b9098;--faint:#5d626b;
+    --green:#5dcaa5;--green-bg:rgba(93,202,165,.12);--amber:#efb45c;--accent:#c9a227;
+    --mono:'JetBrains Mono',monospace;--disp:'Bricolage Grotesque',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--disp);line-height:1.5;
+    padding:28px 18px 60px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto}
+  header{border-bottom:1px solid var(--line2);padding-bottom:16px}
+  h1{font-size:26px;font-weight:700;letter-spacing:-.02em}
+  h1 .sub{display:block;font-size:12.5px;font-weight:400;color:var(--accent);
+    font-family:var(--mono);letter-spacing:.04em;margin-top:7px;text-transform:uppercase}
+  .meta{margin-top:13px;font-size:12px;color:var(--muted);font-family:var(--mono);
+    display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+  .meta b{color:var(--ink);font-weight:500}
+  .disc{margin-top:12px;font-size:11.5px;color:var(--faint);border-left:2px solid var(--line2);
+    padding:6px 0 6px 12px;line-height:1.6}
+  .bar{display:flex;gap:10px;align-items:center;margin:16px 0 6px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:12px;color:var(--muted);background:var(--panel);
+    border:1px solid var(--line);border-radius:7px;padding:7px 12px;cursor:pointer;transition:.15s}
+  .btn:hover{border-color:var(--line2);color:var(--ink)}
+  .legend{font-size:11px;color:var(--faint);font-family:var(--mono);margin-left:auto;
+    display:flex;gap:14px;flex-wrap:wrap}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:2px;vertical-align:1px;margin-right:5px}
+  section{margin-top:24px}
+  .sh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:9px;border-bottom:1px solid var(--line)}
+  .sh h2{font-size:17px;font-weight:700}
+  .sh .trig{font-size:11px;color:var(--muted);font-family:var(--mono);margin-left:auto;text-align:right;max-width:60%}
+  .sh .trig b{color:var(--amber);font-weight:500}
+  .hc,.row{display:grid;grid-template-columns:minmax(140px,1.5fr) 84px 88px 96px 116px minmax(96px,1fr);
+    gap:10px;align-items:center}
+  .hc{font-size:9.5px;color:var(--faint);font-family:var(--mono);text-transform:uppercase;
+    letter-spacing:.06em;padding:7px 4px 4px;margin-top:5px}
+  .hc span:nth-child(n+2){text-align:center}
+  .row{padding:12px 4px;border-bottom:1px solid var(--line)}
+  .nm{min-width:0}
+  .tk{font-family:var(--mono);font-size:13.5px;font-weight:700;color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--faint)}
+  .tk:hover{color:var(--accent);border-color:var(--accent)}
+  .tk .e{font-size:10px;color:var(--faint);margin-left:3px}
+  .co{font-size:11.5px;color:var(--muted);margin-top:2px}
+  .strg{font-size:11px;color:var(--faint);margin-top:2px;line-height:1.35}
+  .cur{font-family:var(--mono);font-size:13.5px;font-weight:500;text-align:center}
+  .cur small{display:block;font-size:9px;color:var(--faint);font-weight:400}
+  .na{color:var(--faint);font-size:11px}
+  input[type=number],input[type=text]{width:100%;background:var(--panel);color:var(--ink);
+    border:1px solid var(--line);border-radius:6px;padding:6px 7px;font-family:var(--mono);
+    font-size:12px;outline:none;transition:.15s}
+  input:focus{border-color:var(--accent);background:var(--panel2)}
+  input::placeholder{color:var(--faint)}
+  .gap{font-family:var(--mono);font-size:12.5px;font-weight:700;text-align:center;padding:5px 3px;
+    border-radius:6px;background:var(--panel);color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+  .gap.buy{background:var(--green-bg);color:var(--green);border-color:rgba(93,202,165,.3)}
+  .gap.over{color:var(--amber)}
+  .gap small{display:block;font-size:8.5px;font-weight:400;color:var(--faint)}
+  .spark{height:34px;display:flex;align-items:center;justify-content:center}
+  .spark svg{width:100%;height:34px;overflow:visible}
+  .priv{font-size:11px;color:var(--faint);font-family:var(--mono);padding:10px 4px;border-bottom:1px solid var(--line);line-height:1.5}
+  .priv b{color:var(--muted);font-weight:500}
+  .footer{margin-top:30px;font-size:11px;color:var(--faint);font-family:var(--mono);line-height:1.7}
+  .footer b{color:var(--muted);font-weight:500}
+  @media(max-width:700px){
+    .hc{display:none}
+    .row{grid-template-columns:1fr 1fr;gap:8px}
+    .nm{grid-column:1/3}
+    .spark{grid-column:1/3}
+    .sh .trig{max-width:100%;text-align:left;margin-left:0}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>곡괭이 워치 대시보드<span class="sub">// custom view · 3h auto-update · self-accumulated history</span></h1>
+    <div class="meta">
+      <span>마지막 갱신 <b id="updated">불러오는 중…</b></span>
+      <span id="status"></span>
+    </div>
+    <div class="disc">
+      가격은 Finnhub 무료 API로 <b style="color:var(--ink)">약 3시간 주기</b>로 갱신됩니다(초단위 실시간 아님).
+      추이선은 갱신 시점들이 쌓여 만들어지므로 처음엔 짧고 시간이 갈수록 길어집니다.
+      목표가·메모는 이 브라우저에 저장됩니다. 도쿄·스위스 종목은 무료 API 미지원이라 수동 확인용입니다.
+      정보 정리용이며 투자자문이 아닙니다.
+    </div>
+  </header>
+
+  <div class="bar">
+    <button class="btn" id="refresh">↻ 가격 새로고침</button>
+    <button class="btn" id="reset">↺ 목표가·메모 초기화</button>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--green)"></span>현재가 ≤ 목표가 = 매수권</span>
+      <span><span class="dot" style="background:var(--amber)"></span>목표가 위</span>
+    </div>
+  </div>
+
+  <div id="board"></div>
+
+  <div class="footer">
+    <b>방아쇠는 가격이 아니라 기울기:</b> 각 테마 우측 관찰 지표가 좋아지는지 보고, 가격이 목표권에 올 때 분할 매수.<br>
+    <b>비상장 핵심</b>(SpaceX·Figure·Commonwealth Fusion·Lightmatter)은 프록시(아마존·구글·NVIDIA 지분, ARK Venture, 향후 IPO)로 우회.
+  </div>
+</div>
+
+<script>
+const LS = "shovel-watch-targets:v1";
+let CONFIG = null, DATA = null, targets = {};
+
+function loadTargets(){ try{ targets = JSON.parse(localStorage.getItem(LS)) || {}; }catch(e){ targets = {}; } }
+function saveTargets(){ try{ localStorage.setItem(LS, JSON.stringify(targets)); }catch(e){} }
+
+async function getJSON(path){
+  const r = await fetch(path + "?t=" + Date.now());
+  if(!r.ok) throw new Error(path + " " + r.status);
+  return r.json();
+}
+
+function sparkline(hist, target){
+  if(!hist || hist.length < 2) return '<span class="na">추이 누적 중</span>';
+  const ys = hist.map(p => p[1]);
+  let lo = Math.min(...ys), hi = Math.max(...ys);
+  if(target != null && !isNaN(target)){ lo = Math.min(lo, target); hi = Math.max(hi, target); }
+  if(hi === lo){ hi = lo + 1; }
+  const W = 116, H = 28, n = ys.length;
+  const x = i => (i/(n-1))*W;
+  const y = v => H - ((v - lo)/(hi - lo))*H;
+  let d = "";
+  ys.forEach((v,i) => { d += (i?"L":"M") + x(i).toFixed(1) + "," + y(v).toFixed(1) + " "; });
+  const up = ys[n-1] >= ys[0];
+  const col = up ? "#5dcaa5" : "#efb45c";
+  let tline = "";
+  if(target != null && !isNaN(target)){
+    const ty = y(target).toFixed(1);
+    tline = '<line x1="0" y1="'+ty+'" x2="'+W+'" y2="'+ty+'" stroke="#c9a227" stroke-width="1" stroke-dasharray="3 3" opacity=".8"/>';
+  }
+  return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'+tline+
+    '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linejoin="round"/>'+
+    '<circle cx="'+x(n-1).toFixed(1)+'" cy="'+y(ys[n-1]).toFixed(1)+'" r="2" fill="'+col+'"/></svg>';
+}
+
+function render(){
+  const prices = (DATA && DATA.prices) || {};
+  let html = "";
+  CONFIG.themes.forEach(th => {
+    html += '<section><div class="sh"><h2>'+th.title+'</h2><div class="trig">관찰 지표: <b>'+th.metric+'</b></div></div>';
+    html += '<div class="hc"><span>종목</span><span>현재가</span><span>목표가</span><span>목표대비</span><span>추이</span><span>메모</span></div>';
+    th.rows.forEach(r => {
+      const pd = prices[r.t] || {};
+      const cur = (pd.status === "ok") ? pd.price : null;
+      const tg = targets[r.t] ? targets[r.t].tgt : "";
+      const note = targets[r.t] ? targets[r.t].note : "";
+      const tgNum = parseFloat(tg);
+      let gapHtml = '—<small>목표 미입력</small>', gapCls = "gap";
+      if(!isNaN(tgNum) && cur != null){
+        const diff = (cur - tgNum)/tgNum*100;
+        if(cur <= tgNum){ gapCls = "gap buy"; gapHtml = diff.toFixed(1)+'%<small>매수권</small>'; }
+        else { gapCls = "gap over"; gapHtml = '+'+diff.toFixed(1)+'%<small>목표 위</small>'; }
+      } else if(!isNaN(tgNum) && cur == null){ gapHtml = '—<small>가격 n/a</small>'; }
+      const curHtml = (cur != null)
+        ? cur.toLocaleString(undefined,{maximumFractionDigits:2})
+        : '<span class="na">'+(r.fetch===false?'수동':'n/a')+'</span>';
+      html += '<div class="row">'+
+        '<div class="nm"><a class="tk" href="https://finance.yahoo.com/quote/'+encodeURIComponent(r.t)+'" target="_blank" rel="noopener">'+r.t+'<span class="e">↗</span></a>'+
+          '<div class="co">'+r.name+'</div><div class="strg">'+r.s+'</div></div>'+
+        '<div class="cur">'+curHtml+'</div>'+
+        '<div><input type="number" step="any" placeholder="—" data-t="'+r.t+'" data-f="tgt" value="'+tg+'"></div>'+
+        '<div class="'+gapCls+'">'+gapHtml+'</div>'+
+        '<div class="spark">'+sparkline(pd.history, isNaN(tgNum)?null:tgNum)+'</div>'+
+        '<div><input type="text" placeholder="메모" data-t="'+r.t+'" data-f="note" value="'+(note?String(note).replace(/"/g,"&quot;"):"")+'"></div>'+
+        '</div>';
+    });
+    html += '</section>';
+  });
+  document.getElementById("board").innerHTML = html;
+  document.getElementById("updated").textContent = DATA && DATA.updated ? DATA.updated.replace("T"," ").replace("+00:00"," UTC") : "데이터 없음";
+  document.querySelectorAll("input").forEach(inp => inp.addEventListener("input", onInput));
+}
+
+function onInput(e){
+  const t = e.target.dataset.t, f = e.target.dataset.f, v = e.target.value;
+  if(!targets[t]) targets[t] = {};
+  targets[t][f === "tgt" ? "tgt" : "note"] = v;
+  saveTargets();
+  if(f === "tgt") render();   // 거리·매수권·목표선 갱신
+}
+
+async function boot(){
+  loadTargets();
+  const s = document.getElementById("status");
+  try{
+    CONFIG = await getJSON("config.json");
+  }catch(e){ s.textContent = "config.json 로드 실패"; return; }
+  try{
+    DATA = await getJSON("data.json");
+    s.textContent = "";
+  }catch(e){
+    DATA = { updated:null, prices:{} };
+    s.textContent = "data.json 없음 — Actions 첫 실행 후 생성됩니다";
+  }
+  render();
+}
+
+document.getElementById("refresh").addEventListener("click", async () => {
+  try{ DATA = await getJSON("data.json"); render(); }catch(e){}
+});
+document.getElementById("reset").addEventListener("click", () => {
+  if(!confirm("목표가·메모를 모두 지울까요?")) return;
+  targets = {}; saveTargets(); render();
+});
+
+boot();
+</script>
+</body>
+</html>

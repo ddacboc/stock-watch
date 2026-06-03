@@ -1,0 +1,86 @@
+{
+  "historyCap": 720,
+  "themes": [
+    {
+      "title": "① AI 에이전트 인프라",
+      "metric": "하이퍼스케일러 capex · HBM 공급 · 파운드리 가동률",
+      "rows": [
+        { "t": "NVDA",  "name": "NVIDIA",       "s": "가속연산 표준 + CUDA 해자", "fetch": true },
+        { "t": "TSM",   "name": "TSMC",         "s": "모든 AI칩 위탁생산 곱셈효과", "fetch": true },
+        { "t": "AVGO",  "name": "Broadcom",     "s": "맞춤형 AI칩·네트워킹", "fetch": true },
+        { "t": "MU",    "name": "Micron",       "s": "HBM 메모리 병목", "fetch": true },
+        { "t": "MSFT",  "name": "Microsoft",    "s": "OpenAI 프록시·클라우드", "fetch": true },
+        { "t": "GOOGL", "name": "Alphabet",     "s": "Anthropic 지분·모델·자체칩", "fetch": true }
+      ]
+    },
+    {
+      "title": "② 로봇 / 피지컬 AI",
+      "metric": "부품 단가 하락 · 출하 대수 · 상용 배치",
+      "rows": [
+        { "t": "NVDA",   "name": "NVIDIA",         "s": "Isaac GR00T·Jetson Thor 로봇 두뇌", "fetch": true },
+        { "t": "MP",     "name": "MP Materials",   "s": "모터용 희토류 자석 소재", "fetch": true },
+        { "t": "TSLA",   "name": "Tesla",          "s": "Optimus (완제품·고변동)", "fetch": true },
+        { "t": "6324.T", "name": "Harmonic Drive", "s": "관절 감속기 과점 (도쿄·수동)", "fetch": false },
+        { "t": "6268.T", "name": "Nabtesco",       "s": "고하중 RV 감속기 (도쿄·수동)", "fetch": false },
+        { "t": "6594.T", "name": "Nidec",          "s": "정밀 모터 (도쿄·수동)", "fetch": false }
+      ]
+    },
+    {
+      "title": "③ 프로그래밍 가능한 생물학",
+      "metric": "임상 판독 · 도구/시약 매출",
+      "rows": [
+        { "t": "TMO",     "name": "Thermo Fisher", "s": "실험실 표준 + 위탁생산", "fetch": true },
+        { "t": "DHR",     "name": "Danaher",       "s": "Cytiva 바이오공정 소모품", "fetch": true },
+        { "t": "ILMN",    "name": "Illumina",      "s": "유전체 시퀀싱 표준", "fetch": true },
+        { "t": "TXG",     "name": "10x Genomics",  "s": "단일세포·공간 분석 도구", "fetch": true },
+        { "t": "LONN.SW", "name": "Lonza",         "s": "세포·유전자 위탁생산 (스위스·수동)", "fetch": false }
+      ]
+    },
+    {
+      "title": "④ 에너지 풍요",
+      "metric": "PPA 체결 · net energy · 백로그",
+      "rows": [
+        { "t": "GEV",  "name": "GE Vernova",     "s": "발전설비·그리드 (터빈 부족=가격결정력)", "fetch": true },
+        { "t": "ETN",  "name": "Eaton",          "s": "송배전·변압기 (소스 불문 전달)", "fetch": true },
+        { "t": "PWR",  "name": "Quanta",         "s": "그리드 건설 인력·EPC", "fetch": true },
+        { "t": "VST",  "name": "Vistra",         "s": "발전 (전자 자체)", "fetch": true },
+        { "t": "CEG",  "name": "Constellation",  "s": "원전·머천트 발전", "fetch": true },
+        { "t": "FLNC", "name": "Fluence",        "s": "에너지 저장 (어떤 소스든 필요)", "fetch": true }
+      ]
+    },
+    {
+      "title": "⑤ 우주 경제",
+      "metric": "발사 $/kg · 궤도 출하 · 정부 수주",
+      "rows": [
+        { "t": "RKLB", "name": "Rocket Lab",       "s": "순수 발사+위성 다변화", "fetch": true },
+        { "t": "PL",   "name": "Planet Labs",      "s": "최대 지구관측 함대·데이터 해자", "fetch": true },
+        { "t": "RDW",  "name": "Redwire",          "s": "우주 부품·궤도 제조", "fetch": true },
+        { "t": "LMT",  "name": "Lockheed",         "s": "방위·위성 (현금흐름 안정)", "fetch": true },
+        { "t": "NOC",  "name": "Northrop",         "s": "방위·우주 프라임", "fetch": true },
+        { "t": "ASTS", "name": "AST SpaceMobile",  "s": "위성-휴대폰 직결 (고옵션·고변동)", "fetch": true }
+      ]
+    },
+    {
+      "title": "⑥ 실리콘 포토닉스",
+      "metric": "CPO 채택률 · 트랜시버 수주 · 2028 배치",
+      "rows": [
+        { "t": "COHR", "name": "Coherent",      "s": "광부품 최대 순수주·레이저", "fetch": true },
+        { "t": "LITE", "name": "Lumentum",      "s": "데이터센터 광통신 핵심 공급", "fetch": true },
+        { "t": "MTSI", "name": "MACOM",         "s": "고속 아날로그·포토닉스 반도체", "fetch": true },
+        { "t": "AAOI", "name": "Applied Opto",  "s": "수직통합 트랜시버 (소형·고변동)", "fetch": true },
+        { "t": "MRVL", "name": "Marvell",       "s": "Celestial AI 인수·광 인터커넥트", "fetch": true }
+      ]
+    },
+    {
+      "title": "⑦ 양자컴퓨팅 (투기적)",
+      "metric": "큐비트·오류정정 마일스톤 · 실사용 사례",
+      "rows": [
+        { "t": "IONQ",  "name": "IonQ",     "s": "트랩이온 순수주 대표 (극변동)", "fetch": true },
+        { "t": "RGTI",  "name": "Rigetti",  "s": "초전도 순수주 (소형·고위험)", "fetch": true },
+        { "t": "QBTS",  "name": "D-Wave",   "s": "어닐링 순수주", "fetch": true },
+        { "t": "IBM",   "name": "IBM",      "s": "로드맵·실사용, 본업이 받쳐줌", "fetch": true },
+        { "t": "GOOGL", "name": "Alphabet", "s": "Willow 칩 (희석된 안전판)", "fetch": true }
+      ]
+    }
+  ]
+}
