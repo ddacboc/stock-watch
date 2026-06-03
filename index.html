@@ -15,23 +15,22 @@
     --violet:#9b8cff;--mono:'JetBrains Mono',monospace;--disp:'Bricolage Grotesque',sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);font-family:var(--disp);line-height:1.5;
-    padding:28px 18px 60px;-webkit-font-smoothing:antialiased}
+  body{background:var(--bg);color:var(--ink);font-family:var(--disp);line-height:1.5;padding:28px 18px 60px;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1080px;margin:0 auto}
   header{border-bottom:1px solid var(--line2);padding-bottom:16px}
   h1{font-size:26px;font-weight:700;letter-spacing:-.02em}
-  h1 .sub{display:block;font-size:12.5px;font-weight:400;color:var(--accent);
-    font-family:var(--mono);letter-spacing:.04em;margin-top:7px;text-transform:uppercase}
-  .meta{margin-top:13px;font-size:12px;color:var(--muted);font-family:var(--mono);
-    display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+  h1 .sub{display:block;font-size:12.5px;font-weight:400;color:var(--accent);font-family:var(--mono);letter-spacing:.04em;margin-top:7px;text-transform:uppercase}
+  .meta{margin-top:13px;font-size:12px;color:var(--muted);font-family:var(--mono);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
   .meta b{color:var(--ink);font-weight:500}
-  .disc{margin-top:12px;font-size:11.5px;color:var(--faint);border-left:2px solid var(--line2);
-    padding:6px 0 6px 12px;line-height:1.6}
+  .disc{margin-top:12px;font-size:11.5px;color:var(--faint);border-left:2px solid var(--line2);padding:6px 0 6px 12px;line-height:1.6}
   .disc b{color:var(--muted);font-weight:500}
   .bar{display:flex;gap:10px;align-items:center;margin:16px 0 6px;flex-wrap:wrap}
-  .btn{font-family:var(--mono);font-size:12px;color:var(--muted);background:var(--panel);
-    border:1px solid var(--line);border-radius:7px;padding:7px 12px;cursor:pointer;transition:.15s}
+  .btn{font-family:var(--mono);font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:7px 12px;cursor:pointer;transition:.15s}
   .btn:hover{border-color:var(--line2);color:var(--ink)}
+  .btn.primary{color:var(--accent);border-color:rgba(201,162,39,.4)}
+  .btn:disabled{opacity:.6;cursor:default}
+  .keyf{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .keyf input{width:150px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-family:var(--mono);font-size:11px;outline:none}
   .legend{font-size:11px;color:var(--faint);font-family:var(--mono);margin-left:auto;display:flex;gap:14px;flex-wrap:wrap}
   .dot{display:inline-block;width:8px;height:8px;border-radius:2px;vertical-align:1px;margin-right:5px}
   section{margin-top:24px}
@@ -48,14 +47,12 @@
   .tk .e{font-size:10px;color:var(--faint);margin-left:3px}
   .co{font-size:11.5px;color:var(--muted);margin-top:2px}
   .strg{font-size:11px;color:var(--faint);margin-top:2px;line-height:1.35}
-  .priv-badge{display:inline-block;font-family:var(--mono);font-size:9.5px;color:var(--violet);
-    border:1px solid rgba(155,140,255,.35);border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:1px}
+  .priv-badge{display:inline-block;font-family:var(--mono);font-size:9.5px;color:var(--violet);border:1px solid rgba(155,140,255,.35);border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:1px}
   .rright{display:flex;align-items:center;gap:12px;flex-shrink:0}
   .cur{font-family:var(--mono);font-size:14px;font-weight:500;text-align:right;min-width:64px}
   .cur small{display:block;font-size:9px;color:var(--faint);font-weight:400}
   .na{color:var(--faint);font-size:11px}
-  .gap{font-family:var(--mono);font-size:12.5px;font-weight:700;text-align:center;padding:5px 7px;
-    border-radius:6px;background:var(--panel);color:var(--muted);border:1px solid var(--line);white-space:nowrap;min-width:76px}
+  .gap{font-family:var(--mono);font-size:12.5px;font-weight:700;text-align:center;padding:5px 7px;border-radius:6px;background:var(--panel);color:var(--muted);border:1px solid var(--line);white-space:nowrap;min-width:76px}
   .gap.buy{background:var(--green-bg);color:var(--green);border-color:rgba(93,202,165,.3)}
   .gap.over{color:var(--amber)}
   .gap small{display:block;font-size:8.5px;font-weight:400;color:var(--faint)}
@@ -68,15 +65,16 @@
   input.num{width:62px}
   input.tgt{width:74px}
   input.note{flex:1;min-width:120px}
-  input[type=number],input[type=text]{background:var(--panel);color:var(--ink);
-    border:1px solid var(--line);border-radius:6px;padding:6px 7px;font-family:var(--mono);
-    font-size:12px;outline:none;transition:.15s}
+  input[type=number],input[type=text]{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 7px;font-family:var(--mono);font-size:12px;outline:none;transition:.15s}
   input:focus{border-color:var(--accent);background:var(--panel2)}
   input::placeholder{color:var(--faint)}
   .fair{font-family:var(--mono);font-size:12px;color:var(--accent);white-space:nowrap}
   .fair small{color:var(--faint)}
-  .est-tag{font-size:9px;color:var(--accent);font-family:var(--mono);border:1px solid rgba(201,162,39,.35);
-    border-radius:4px;padding:0 4px;margin-left:2px}
+  .mkt{font-family:var(--mono);font-size:11px;white-space:nowrap;color:var(--muted)}
+  .mkt b{font-weight:700}
+  .mkt.exp b{color:var(--amber)}
+  .mkt.cheap b{color:var(--green)}
+  .est-tag{font-size:9px;color:var(--accent);font-family:var(--mono);border:1px solid rgba(201,162,39,.35);border-radius:4px;padding:0 4px;margin-left:2px}
   .priv-note{font-size:11px;color:var(--violet);font-family:var(--mono)}
   .footer{margin-top:30px;font-size:11px;color:var(--faint);font-family:var(--mono);line-height:1.7}
   .footer b{color:var(--muted);font-weight:500}
@@ -84,29 +82,33 @@
     .rtop{flex-direction:column;gap:8px}
     .rright{width:100%;justify-content:space-between}
     .sh .trig{max-width:100%;text-align:left;margin-left:0}
+    .legend{margin-left:0}
   }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>곡괭이 워치 대시보드<span class="sub">// custom view · 1h auto-update · PER×EPS 적정가</span></h1>
+    <h1>곡괭이 워치 대시보드<span class="sub">// custom view · 적정PER×EPS · 시장PER 비교 · 라이브 갱신</span></h1>
     <div class="meta">
       <span>마지막 갱신 <b id="updated">불러오는 중…</b></span>
       <span id="status"></span>
     </div>
     <div class="disc">
-      <b>적정가 = 적정PER × 예상EPS</b> 로 계산됩니다. PER은 <b style="color:var(--accent)">업종 평균 기준 추정치(검증요)</b>로 미리 채워뒀으니 회사별로 직접 검증·수정하세요.
-      <b>예상EPS는 변하므로 비어 있습니다</b> — 티커를 눌러 최신값을 확인해 입력하면 적정가가 계산됩니다. 적자·사전수익 종목은 PER이 부적용이라
-      "목표가 직접" 칸에 본인 기준값을 넣으세요. 가격은 약 1시간 주기(초단위 실시간 아님). 정보 정리용이며 투자자문이 아닙니다.
+      <b>적정가 = 적정PER × 예상EPS</b>. 적정PER은 업종 평균 추정치(검증요)이니 직접 수정하세요.
+      옆의 <b style="color:var(--ink)">시장 ≈ NN배</b>는 현재가÷EPS로 계산한 <b>지금 시장이 매기는 Forward P/E</b>입니다 —
+      내 적정PER보다 높으면 "내 기준 비쌈(주황)", 낮으면 "쌈(초록)". <b>예상EPS</b>는 직접 입력(티커→Yahoo→Earnings Estimate→Current Year).
+      "지금 업데이트"는 버튼을 누른 즉시 라이브 가격을 받습니다(아래 키 입력 필요, 키는 이 브라우저에만 저장). 정보 정리용이며 투자자문이 아닙니다.
     </div>
   </header>
 
   <div class="bar">
-    <button class="btn" id="refresh">↻ 가격 새로고침</button>
+    <button class="btn primary" id="live">⤓ 지금 업데이트 (라이브)</button>
+    <button class="btn" id="refresh">↻ 자동갱신값 불러오기</button>
     <button class="btn" id="reset">↺ 입력값 초기화</button>
+    <span class="keyf">Finnhub 키 <input id="keyInput" type="password" placeholder="라이브용 (선택)"></span>
     <div class="legend">
-      <span><span class="dot" style="background:var(--green)"></span>현재가 ≤ 목표 = 매수권</span>
+      <span><span class="dot" style="background:var(--green)"></span>매수권</span>
       <span><span class="dot" style="background:var(--amber)"></span>목표 위</span>
       <span><span class="dot" style="background:var(--violet)"></span>비상장</span>
     </div>
@@ -115,120 +117,128 @@
   <div id="board"></div>
 
   <div class="footer">
-    <b>적정가 계산:</b> 적정PER(검증요) × 본인이 넣은 예상EPS. PER 부적용(적자) 종목은 목표가 직접 입력.<br>
-    <b>방아쇠는 가격이 아니라 기울기:</b> 각 테마 우측 관찰 지표가 좋아질 때, 가격이 목표권에 오면 분할 매수.<br>
-    <b>비상장</b> 행은 직접 매수 불가 — 프록시(괄호)로 우회하거나 IPO를 관찰.
+    <b>시장PER vs 내 적정PER:</b> 시장이 32배 매기는데 내가 28배가 적정이라 보면 → 지금은 비쌈. 이 비교가 "싸 보이는 착시"를 잡아줍니다.<br>
+    <b>방아쇠는 가격이 아니라 기울기:</b> 관찰 지표가 좋아질 때, 가격이 목표권에 오면 분할 매수.<br>
+    <b>비상장</b> 행은 프록시(괄호)로 우회하거나 IPO 관찰. <b>라이브 버튼</b>이 안 되면(브라우저 차단/CORS) 1시간 자동갱신값을 쓰세요.
   </div>
 </div>
 
 <script>
-const LS = "shovel-watch:v2";
+const LS = "shovel-watch:v2", KEYK = "finnhub-key:v1";
 let CONFIG = null, DATA = null, store = {};
 
 function load(){ try{ store = JSON.parse(localStorage.getItem(LS)) || {}; }catch(e){ store = {}; } }
 function save(){ try{ localStorage.setItem(LS, JSON.stringify(store)); }catch(e){} }
 function st(t){ if(!store[t]) store[t] = {}; return store[t]; }
-
 async function getJSON(p){ const r = await fetch(p + "?t=" + Date.now()); if(!r.ok) throw new Error(p+" "+r.status); return r.json(); }
+function num(v){ const n = parseFloat(v); return isNaN(n) ? NaN : n; }
 
 function sparkline(hist, target){
   if(!hist || hist.length < 2) return '<span class="na">추이 누적 중</span>';
-  const ys = hist.map(p => p[1]);
-  let lo = Math.min(...ys), hi = Math.max(...ys);
+  const ys = hist.map(p => p[1]); let lo = Math.min(...ys), hi = Math.max(...ys);
   if(target != null && !isNaN(target)){ lo = Math.min(lo, target); hi = Math.max(hi, target); }
   if(hi === lo) hi = lo + 1;
-  const W = 104, H = 28, n = ys.length;
-  const x = i => (i/(n-1))*W, y = v => H - ((v - lo)/(hi - lo))*H;
+  const W = 104, H = 28, n = ys.length, x = i => (i/(n-1))*W, y = v => H - ((v - lo)/(hi - lo))*H;
   let d = ""; ys.forEach((v,i) => d += (i?"L":"M") + x(i).toFixed(1) + "," + y(v).toFixed(1) + " ");
-  const col = ys[n-1] >= ys[0] ? "#5dcaa5" : "#efb45c";
-  let tl = "";
+  const col = ys[n-1] >= ys[0] ? "#5dcaa5" : "#efb45c"; let tl = "";
   if(target != null && !isNaN(target)){ const ty = y(target).toFixed(1);
     tl = '<line x1="0" y1="'+ty+'" x2="'+W+'" y2="'+ty+'" stroke="#c9a227" stroke-width="1" stroke-dasharray="3 3" opacity=".8"/>'; }
-  return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'+tl+
-    '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linejoin="round"/>'+
-    '<circle cx="'+x(n-1).toFixed(1)+'" cy="'+y(ys[n-1]).toFixed(1)+'" r="2" fill="'+col+'"/></svg>';
+  return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'+tl+'<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.6" stroke-linejoin="round"/><circle cx="'+x(n-1).toFixed(1)+'" cy="'+y(ys[n-1]).toFixed(1)+'" r="2" fill="'+col+'"/></svg>';
 }
 
-function num(v){ const n = parseFloat(v); return isNaN(n) ? NaN : n; }
-
 function render(){
-  const prices = (DATA && DATA.prices) || {};
-  let html = "";
+  const prices = (DATA && DATA.prices) || {}; let html = "";
   CONFIG.themes.forEach(th => {
     html += '<section><div class="sh"><h2>'+th.title+'</h2><div class="trig">관찰 지표: <b>'+th.metric+'</b></div></div>';
     th.rows.forEach(r => {
       const s = store[r.t] || {};
       if(r.private){
-        html += '<div class="row"><div class="rtop"><div class="nm">'+
-          '<span class="tk nolink">'+r.t+'</span><span class="priv-badge">비상장</span>'+
-          '<div class="co">'+r.name+'</div><div class="strg">'+r.s+'</div></div></div>'+
-          '<div class="rbot"><span class="priv-note">프록시: '+(r.proxy||'—')+'</span>'+
-          '<input class="note" type="text" placeholder="메모" data-t="'+r.t+'" data-f="note" value="'+(s.note?String(s.note).replace(/"/g,"&quot;"):"")+'"></div></div>';
+        html += '<div class="row"><div class="rtop"><div class="nm"><span class="tk nolink">'+r.t+'</span><span class="priv-badge">비상장</span><div class="co">'+r.name+'</div><div class="strg">'+r.s+'</div></div></div><div class="rbot"><span class="priv-note">프록시: '+(r.proxy||'—')+'</span><input class="note" type="text" placeholder="메모" data-t="'+r.t+'" data-f="note" value="'+(s.note?String(s.note).replace(/"/g,"&quot;"):"")+'"></div></div>';
         return;
       }
-      const pd = prices[r.t] || {};
-      const cur = (pd.status === "ok") ? pd.price : null;
+      const pd = prices[r.t] || {}; const cur = (pd.status === "ok") ? pd.price : null;
       const peDisp = (s.pe !== undefined) ? s.pe : (r.pe != null ? String(r.pe) : "");
       const pe = num(peDisp), eps = num(s.eps), manual = num(s.tgt);
       const fair = (pe > 0 && eps > 0) ? pe * eps : NaN;
       const eff = (!isNaN(manual) && manual > 0) ? manual : fair;
 
       let gapHtml = '—<small>목표 미설정</small>', gapCls = "gap";
-      if(!isNaN(eff) && cur != null){
-        const diff = (cur - eff)/eff*100;
+      if(!isNaN(eff) && cur != null){ const diff = (cur - eff)/eff*100;
         if(cur <= eff){ gapCls = "gap buy"; gapHtml = diff.toFixed(1)+'%<small>매수권</small>'; }
         else { gapCls = "gap over"; gapHtml = '+'+diff.toFixed(1)+'%<small>목표 위</small>'; }
       } else if(!isNaN(eff) && cur == null){ gapHtml = '—<small>가격 n/a</small>'; }
 
-      const curHtml = (cur != null) ? cur.toLocaleString(undefined,{maximumFractionDigits:2})
-                                    : '<span class="na">'+(r.fetch===false?'수동':'n/a')+'</span>';
-      const fairHtml = !isNaN(fair) ? ('적정 '+fair.toLocaleString(undefined,{maximumFractionDigits:2})+' <small>(추정)</small>')
-                       : (r.pe==null ? '<small>PER 부적용</small>' : '<small>EPS 입력 필요</small>');
+      const curHtml = (cur != null) ? cur.toLocaleString(undefined,{maximumFractionDigits:2}) : '<span class="na">'+(r.fetch===false?'수동':'n/a')+'</span>';
+      const fairHtml = !isNaN(fair) ? ('적정 '+fair.toLocaleString(undefined,{maximumFractionDigits:2})+' <small>(추정)</small>') : (r.pe==null ? '<small>PER 부적용</small>' : '<small>EPS 입력 필요</small>');
 
-      html += '<div class="row"><div class="rtop">'+
-        '<div class="nm"><a class="tk" href="https://finance.yahoo.com/quote/'+encodeURIComponent(r.t)+'" target="_blank" rel="noopener">'+r.t+'<span class="e">↗</span></a>'+
-          '<div class="co">'+r.name+'</div><div class="strg">'+r.s+'</div></div>'+
-        '<div class="rright"><div class="cur">'+curHtml+'<small>현재가</small></div>'+
-          '<div class="'+gapCls+'">'+gapHtml+'</div>'+
-          '<div class="spark">'+sparkline(pd.history, isNaN(eff)?null:eff)+'</div></div></div>'+
-        '<div class="rbot">'+
-          '<div class="vg"><label>적정PER<span class="est-tag">검증요</span></label>'+
-            '<input class="num" type="number" step="any" placeholder="—" data-t="'+r.t+'" data-f="pe" value="'+peDisp+'"></div>'+
-          '<span class="op">×</span>'+
-          '<div class="vg"><label>예상EPS</label>'+
-            '<input class="num" type="number" step="any" placeholder="입력" data-t="'+r.t+'" data-f="eps" value="'+(s.eps??"")+'"></div>'+
-          '<span class="fair">'+fairHtml+'</span>'+
-          '<div class="vg"><label>목표가 직접</label>'+
-            '<input class="tgt" type="number" step="any" placeholder="—" data-t="'+r.t+'" data-f="tgt" value="'+(s.tgt??"")+'"></div>'+
-          '<input class="note" type="text" placeholder="메모" data-t="'+r.t+'" data-f="note" value="'+(s.note?String(s.note).replace(/"/g,"&quot;"):"")+'"></div>'+
-        '</div>';
+      // 시장 PER = 현재가 / EPS (= Forward P/E)
+      let mktHtml = "";
+      if(cur != null && eps > 0){
+        const mpe = cur / eps; let cls = "mkt";
+        if(pe > 0){ if(pe < mpe) cls = "mkt exp"; else if(pe > mpe) cls = "mkt cheap"; }
+        mktHtml = '<span class="'+cls+'">시장 ≈ <b>'+mpe.toFixed(1)+'배</b></span>';
+      }
+
+      html += '<div class="row"><div class="rtop"><div class="nm"><a class="tk" href="https://finance.yahoo.com/quote/'+encodeURIComponent(r.t)+'" target="_blank" rel="noopener">'+r.t+'<span class="e">↗</span></a><div class="co">'+r.name+'</div><div class="strg">'+r.s+'</div></div>'+
+        '<div class="rright"><div class="cur">'+curHtml+'<small>현재가</small></div><div class="'+gapCls+'">'+gapHtml+'</div><div class="spark">'+sparkline(pd.history, isNaN(eff)?null:eff)+'</div></div></div>'+
+        '<div class="rbot"><div class="vg"><label>적정PER<span class="est-tag">검증요</span></label><input class="num" type="number" step="any" placeholder="—" data-t="'+r.t+'" data-f="pe" value="'+peDisp+'"></div>'+
+          '<span class="op">×</span><div class="vg"><label>예상EPS</label><input class="num" type="number" step="any" placeholder="입력" data-t="'+r.t+'" data-f="eps" value="'+(s.eps??"")+'"></div>'+
+          '<span class="fair">'+fairHtml+'</span>'+mktHtml+
+          '<div class="vg"><label>목표가 직접</label><input class="tgt" type="number" step="any" placeholder="—" data-t="'+r.t+'" data-f="tgt" value="'+(s.tgt??"")+'"></div>'+
+          '<input class="note" type="text" placeholder="메모" data-t="'+r.t+'" data-f="note" value="'+(s.note?String(s.note).replace(/"/g,"&quot;"):"")+'"></div></div>';
     });
     html += '</section>';
   });
   document.getElementById("board").innerHTML = html;
-  document.getElementById("updated").textContent = DATA && DATA.updated ? DATA.updated.replace("T"," ").replace("+00:00"," UTC") : "데이터 없음";
-  document.querySelectorAll("input").forEach(i => i.addEventListener("input", onInput));
+  document.getElementById("updated").textContent = DATA && DATA.updated ? String(DATA.updated).replace("T"," ").replace("+00:00"," UTC").slice(0,19) : "데이터 없음";
+  document.querySelectorAll("#board input").forEach(i => i.addEventListener("input", onInput));
 }
 
-function onInput(e){
-  const t = e.target.dataset.t, f = e.target.dataset.f;
-  st(t)[f] = e.target.value;
-  save();
-  if(f !== "note") render();
+function onInput(e){ const t = e.target.dataset.t, f = e.target.dataset.f; st(t)[f] = e.target.value; save(); if(f !== "note") render(); }
+
+async function fetchNow(){
+  const key = (localStorage.getItem(KEYK)||"").trim();
+  if(!key){ alert("먼저 우측의 Finnhub 키 칸에 무료 API 키를 입력하세요. (키는 이 브라우저에만 저장됩니다)"); return; }
+  const tickers = []; CONFIG.themes.forEach(th=>th.rows.forEach(r=>{ if(r.fetch && tickers.indexOf(r.t)<0) tickers.push(r.t); }));
+  const btn = document.getElementById("live"); btn.disabled = true; const orig = btn.textContent;
+  if(!DATA) DATA = {updated:null, prices:{}};
+  let ok=0, fail=0, i=0;
+  for(const t of tickers){
+    i++; btn.textContent = "받는 중 "+i+"/"+tickers.length;
+    try{
+      const r = await fetch("https://finnhub.io/api/v1/quote?symbol="+encodeURIComponent(t)+"&token="+encodeURIComponent(key));
+      const d = await r.json(); const p = d.c;
+      if(p && p > 0){
+        const e = DATA.prices[t] || {price:null, history:[], status:"n/a"};
+        e.price = Math.round(p*10000)/10000; e.status = "ok";
+        e.history = (e.history||[]); e.history.push([new Date().toISOString(), e.price]); e.history = e.history.slice(-720);
+        DATA.prices[t] = e; ok++;
+      } else fail++;
+    }catch(err){ fail++; }
+    await new Promise(res => setTimeout(res, 130));
+  }
+  DATA.updated = new Date().toISOString();
+  btn.textContent = orig; btn.disabled = false;
+  const s = document.getElementById("status");
+  if(ok === 0 && fail > 0) s.textContent = "라이브 실패 — 브라우저 차단(CORS)이거나 키 오류. 자동갱신값을 쓰세요";
+  else s.textContent = "라이브 갱신 "+new Date().toLocaleTimeString()+" ("+ok+" ok"+(fail?", "+fail+" 실패":"")+")";
+  render();
 }
 
 async function boot(){
   load();
+  const ki = document.getElementById("keyInput");
+  ki.value = localStorage.getItem(KEYK) || "";
+  ki.addEventListener("input", () => { try{ localStorage.setItem(KEYK, ki.value.trim()); }catch(e){} });
   const s = document.getElementById("status");
-  try{ CONFIG = await getJSON("config.json"); }
-  catch(e){ s.textContent = "config.json 로드 실패"; return; }
-  try{ DATA = await getJSON("data.json"); s.textContent = ""; }
-  catch(e){ DATA = {updated:null, prices:{}}; s.textContent = "data.json 없음 — Actions 첫 실행 후 생성"; }
+  try{ CONFIG = await getJSON("config.json"); }catch(e){ s.textContent = "config.json 로드 실패"; return; }
+  try{ DATA = await getJSON("data.json"); s.textContent = ""; }catch(e){ DATA = {updated:null, prices:{}}; s.textContent = "data.json 없음 — 라이브 버튼 또는 Actions 실행 필요"; }
   render();
 }
 
+document.getElementById("live").addEventListener("click", fetchNow);
 document.getElementById("refresh").addEventListener("click", async () => { try{ DATA = await getJSON("data.json"); render(); }catch(e){} });
-document.getElementById("reset").addEventListener("click", () => { if(confirm("입력값(PER·EPS·목표가·메모)을 모두 지울까요?")){ store = {}; save(); render(); } });
+document.getElementById("reset").addEventListener("click", () => { if(confirm("입력값(PER·EPS·목표가·메모)을 모두 지울까요? (API 키는 유지)")){ store = {}; save(); render(); } });
 
 boot();
 </script>
